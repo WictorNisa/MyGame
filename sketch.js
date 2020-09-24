@@ -19,9 +19,11 @@ let enemey = {
 //Shows at which px the enemy shows on load
   x: 150 * Math.random(),
   y: 300 * Math.random(),
-  vx:0.1 * Math.random() - 0.2,
+  vx: 0.1 * Math.random() - 0.2,
   vy: 0.1 * Math.random() - 0.2,
 };
+
+
 
 
 
@@ -108,6 +110,9 @@ function draw() {
     enemey.x -= enemey.vx * deltaTime;
     enemey.y -= enemey.vy * deltaTime;
 
+
+
+
     //check absolute value
     console.log(Math.abs(65));
     const absolutValueX = Math.abs(enemey.vx);
@@ -158,9 +163,45 @@ function draw() {
   if(score === 10){
     level = 2;
   } if(level === 2){
-    fill(195, 60, 40);
-    square(enemey.x, enemey.y, 80);
+    fill(55, 113, 142);
+    square(enemey.x, enemey.y, 100);
+    
   }
+
+  if(score === 20){
+    level = 3;
+  }if(level === 3){
+    fill(93, 183, 222);
+    square(enemey.x, enemey.y, 150);
+  }
+
+  if(score === 30){
+    level = 4;
+  }if(level === 4){
+    fill(93, 100, 40);
+    square(enemey.x, enemey.y, 200);
+  }
+
+  if(score === 40){
+    level = 5;
+  }if(level === 5){
+    fill(200, 100, 90);
+    square(enemey.x, enemey.y, 300);
+  }
+
+  if(score === 50){
+    level = 6;
+  }if(level === 5){
+    fill(10, 20, 90);
+    square(enemey.x, enemey.y, 480);
+  }
+
+  if(score === 50 && level == 6){
+    background('white');
+    fill('black');
+    text("You Won! Good Job :)", 400, 300);
+  }
+
 
   
 
