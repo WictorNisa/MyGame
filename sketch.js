@@ -1,11 +1,12 @@
 let score = 0;
 let level = 0;
 let img;
+let health = 300;
 
 let player = {
   //Shows at which px the player shows on load
-  x: 40,
-  y: 40,
+  x: 400,
+  y: 350,
 };
 
 let treasure = {
@@ -93,6 +94,16 @@ function draw() {
       };
     }
 
+    // Checks to see if player and enemey are touching eachother
+    const distancePlayerEnemey = Math.sqrt(
+      Math.pow(enemey.x - player.x, 2) +
+      Math.pow(enemey.y - player.y, 2)
+    );
+    if (distancePlayerEnemey <= 45 + 65) {
+      // collision between player and enemey
+      health--;
+    }
+
     //Makes the enemy move in random ways
     enemey.x -= enemey.vx * deltaTime;
     enemey.y -= enemey.vy * deltaTime;
@@ -107,6 +118,11 @@ function draw() {
     if (enemey.y > height - absolutValueY || enemey.y < absolutValueY) {
       enemey.vy *= -1;
     }
+
+
+    
+    fill(195, 60, 40);
+    square(303, 150, 80);
     
 
 
@@ -135,7 +151,17 @@ function draw() {
   fill('white');
   text('Level: ' + level, 650, 25);
 
-  //Shows current lives
+  //Shows lives
+  fill('white');
+  text('Health: ' + health, 200, 25);
+
+  if(score === 10){
+    level = 2;
+  } if(level === 2){
+    fill(195, 60, 40);
+    square(enemey.x, enemey.y, 80);
+  }
+
   
 
   
