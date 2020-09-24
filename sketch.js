@@ -1,5 +1,6 @@
 let score = 0;
 let level = 0;
+let img;
 
 let player = {
   //Shows at which px the player shows on load
@@ -10,7 +11,7 @@ let player = {
 let treasure = {
   //Shows at which px the treasure shows on load
   x: 300,
-  y: 140
+  y: 140,
 };
 
 let enemey = {
@@ -21,11 +22,16 @@ let enemey = {
   vy: 0.1 * Math.random() - 0.2,
 };
 
-let multipleEnemies = [];
+
+
+function preload() {
+
+}
 
 function setup() {
   // put setup code here
   createCanvas(800, 750);
+ 
 }
 
 function draw() {
@@ -33,6 +39,7 @@ function draw() {
 
   //Player movements
   const playerMovement = 7;
+
   if(keyIsPressed){
     if(key == 's'){
       // move player downwards
@@ -78,7 +85,7 @@ function draw() {
       Math.pow(treasure.y - player.y, 2)
     );
     if (distancePlayerTreasure <= 40 + 25) {
-      // collision between player and treasure!
+      // collision between player and treasure
       score++;
       treasure = {
         x: 500 * Math.random(),
@@ -86,11 +93,21 @@ function draw() {
       };
     }
 
-    //Makes the enemy move in 
+    //Makes the enemy move in random ways
     enemey.x -= enemey.vx * deltaTime;
     enemey.y -= enemey.vy * deltaTime;
 
-
+    //check absolute value
+    console.log(Math.abs(65));
+    const absolutValueX = Math.abs(enemey.vx);
+    const absolutValueY = Math.abs(enemey.vy);
+    if (enemey.x > width - absolutValueX || enemey.x < absolutValueX) {
+      enemey.vx *= -1;
+    }
+    if (enemey.y > height - absolutValueY || enemey.y < absolutValueY) {
+      enemey.vy *= -1;
+    }
+    
 
 
   //drawing
@@ -117,4 +134,9 @@ function draw() {
   //Shows current level
   fill('white');
   text('Level: ' + level, 650, 25);
+
+  //Shows current lives
+  
+
+  
 }
