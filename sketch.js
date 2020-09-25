@@ -1,7 +1,7 @@
 let score = 0;
 let level = 0;
 let img;
-let health = 300;
+let health = 200;
 
 let player = {
   //Shows at which px the player shows on load
@@ -25,11 +25,6 @@ let enemey = {
 
 
 
-
-
-function preload() {
-
-}
 
 function setup() {
   // put setup code here
@@ -199,11 +194,15 @@ function draw() {
   if(score === 50 && level == 6){
     background('white');
     fill('black');
+    textSize('40')
     text("You Won! Good Job :)", 400, 300);
   }
 
-
-  
-
+  if(health < 0){
+    background('red');
+    fill('white');
+    textSize('30');
+    text("You ran out of health :C", 400, 300);
+  }
   
 }
